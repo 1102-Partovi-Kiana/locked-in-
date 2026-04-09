@@ -30,7 +30,7 @@ export default function PersonCard({
   return (
     <article className="group rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div className="mb-4 flex items-center gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-100 to-orange-200 text-sm font-bold text-orange-700">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 text-sm font-bold text-blue-700">
           {getInitials(name)}
         </div>
         <div>
@@ -53,7 +53,7 @@ export default function PersonCard({
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 transition-colors hover:border-[#E4572E] hover:text-[#E4572E]"
+            className="rounded-full border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 transition-colors hover:border-[#2563EB] hover:text-[#2563EB]"
           >
             {link.label}
           </a>
