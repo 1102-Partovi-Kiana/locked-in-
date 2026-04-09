@@ -46,7 +46,7 @@ const hosts: Person[] = [
     name: "Heba Alazzeh",
     role: "Host",
     links: [
-      { label: "LinkedIn", href: "https://https://www.linkedin.com/in/heba-alazzeh/"},
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/heba-alazzeh/" },
     ],
   },
 ];
@@ -56,7 +56,7 @@ const panelists: Person[] = [
     name: "Hussam Makhoul",
     role: "Incoming SWE Intern @ Pinterest | CS Honors @ TAMU",
     links: [
-      { label: "LinkedIn", href: "https://https://www.linkedin.com/in/hussam-makhoul123/" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/hussam-makhoul123/" },
     ],
   },
   {
