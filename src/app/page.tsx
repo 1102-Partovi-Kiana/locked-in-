@@ -1,6 +1,6 @@
 import PersonCard from "@/components/PersonCard";
 
-type EventItem = {
+type UpcomingEventItem = {
   name: string;
   date: string;
   description: string;
@@ -8,6 +8,12 @@ type EventItem = {
   registrationUrl: string;
   /** Optional — defaults to "Register". */
   ctaLabel?: string;
+};
+
+type PastEventItem = {
+  name: string;
+  date: string;
+  description: string;
 };
 
 type Person = {
@@ -18,14 +24,22 @@ type Person = {
   links: { label: string; href: string }[];
 };
 
-// Add each event’s public URL (e.g. Luma) to registrationUrl.
-const events: EventItem[] = [
+// Past sessions (no registration CTA).
+const pastEvents: PastEventItem[] = [
+  {
+    name: "Locked[In]: Breaking into the Next Recruiting Cycle",
+    date: "Saturday, April 11 · Past event",
+    description: "Real advice for breaking into tech this season.",
+  },
   {
     name: "Locked[In]: Intern 101",
-    date: "Saturday, April 18 · 12:00 PM · Location to be announced",
+    date: "Saturday, April 18 · Past event",
     description: "Real advice for navigating your internship.",
-    registrationUrl: "https://luma.com/j3qdtg1j",
   },
+];
+
+// Add each event’s public URL (e.g. Luma) to registrationUrl.
+const upcomingEvents: UpcomingEventItem[] = [
   {
     name: "Locked[In]: New Grad 101",
     date: "Saturday, April 25 · 12:00 PM · Location to be announced",
@@ -51,7 +65,14 @@ const hosts: Person[] = [
   },
 ];
 
-const panelists: Person[] = [
+const panel1Panelists: Person[] = [
+    {
+    name: "Arvin Shahid",
+    role: "Fellow @ OpenAI | 10+ intern | Ex-Nvidia, GitHub, SpaceX, Coinbase, Apple, Tesla, and more.",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/arvin-shahid/" },
+    ],
+  },
   {
     name: "Hussam Makhoul",
     role: "Incoming SWE Intern @ Pinterest | CS Honors @ TAMU",
@@ -80,12 +101,56 @@ const panelists: Person[] = [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/stevendatnguyen/" },
     ],
   },
+];
+
+// Panel 2 — speakers from the past Panel 2 session (same shape as panel1Panelists).
+const panel2Panelists: Person[] = [
   {
     name: "Arvin Shahid",
-    role: "Fellow @ OpenAI",
+    role: "Fellow @ OpenAI | 10+ intern | Ex-Nvidia, GitHub, SpaceX, Coinbase, Apple, Tesla, and more.",
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/arvin-shahid/" },
     ],
+  },
+  {
+    name: "Pari Patel",
+    role: "Incoming SWE @ Disney",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/pari-b-patel/" },
+    ],
+  },
+  {
+    name: "Joshua Matni",
+    role: "Prev DS Intern @ JPMorgan Chase, NBCUniversal, Stanford",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/josh-matni/" },
+    ],
+  },
+  {
+    name: "Ashley Torres",
+    role: "PM @ Microsoft",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/ashley-torres-ventura/" },
+    ],
+  },
+  {
+    name: "Salma Hussein",
+    role: "Incoming SWE Intern @ RSM",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/salmahusseinn/" },
+    ],
+  },
+  {
+    name: "Justin Harper",
+    role: "Incoming SWE Intern @ Google",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/justinhtech/" },
+    ],
+  },
+  {
+    name: "Tomas Santos Yciano",
+    role: "Incoming Tech Consulting Intern @ EY | 2x EY Launch Intern",
+    links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/tjsy/" }],
   },
 ];
 
@@ -104,7 +169,7 @@ export default function Home() {
             Stay Connected
           </h2>
           <p className="mt-5 max-w-xl text-base leading-7 text-zinc-600 sm:text-lg">
-            Connect with our hosts and panelists from today&apos;s event.
+            Connect with our hosts and panelists across our events.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
@@ -132,7 +197,7 @@ export default function Home() {
             Upcoming Events
           </h2>
           <div className="mt-8 grid gap-5">
-            {events.map((event) => (
+            {upcomingEvents.map((event) => (
               <article
                 key={event.name}
                 className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
@@ -156,6 +221,34 @@ export default function Home() {
                 >
                   {event.ctaLabel ?? "Register"}
                 </a>
+              </article>
+            ))}
+          </div>
+
+          <h2
+            id="past-events"
+            className="mt-16 scroll-mt-20 text-3xl font-bold tracking-tight sm:mt-20 sm:text-4xl"
+          >
+            Past Events
+          </h2>
+          <div className="mt-8 grid gap-5">
+            {pastEvents.map((event) => (
+              <article
+                key={event.name}
+                className="rounded-2xl border border-zinc-200/90 bg-zinc-50/80 p-6 shadow-sm"
+              >
+                <p className="inline-block rounded-full bg-zinc-200/80 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-zinc-600">
+                  Past event
+                </p>
+                <p className="mt-3 text-sm font-medium text-zinc-600">
+                  {event.date}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold tracking-tight text-zinc-800">
+                  {event.name}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-600 sm:text-base">
+                  {event.description}
+                </p>
               </article>
             ))}
           </div>
@@ -187,8 +280,39 @@ export default function Home() {
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Meet the Panelists
           </h2>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {panelists.map((panelist) => (
+
+          <h3 className="mt-10 text-xl font-semibold tracking-tight text-zinc-800">
+            Panel 2
+          </h3>
+          <p className="mt-1 text-sm text-zinc-600">
+            Speakers from Panel two.
+          </p>
+          {panel2Panelists.length > 0 ? (
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {panel2Panelists.map((panelist) => (
+                <PersonCard
+                  key={panelist.name}
+                  name={panelist.name}
+                  role={panelist.role}
+                  bio={panelist.bio}
+                  links={panelist.links}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-6 text-sm text-zinc-500">
+              We&apos;re adding Panel 2 speaker profiles here soon.
+            </p>
+          )}
+
+          <h3 className="mt-14 text-xl font-semibold tracking-tight text-zinc-800">
+            Panel 1
+          </h3>
+          <p className="mt-1 text-sm text-zinc-600">
+            Speakers from Panel one.
+          </p>
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {panel1Panelists.map((panelist) => (
               <PersonCard
                 key={panelist.name}
                 name={panelist.name}
