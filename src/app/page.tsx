@@ -154,6 +154,57 @@ const panel2Panelists: Person[] = [
   },
 ];
 
+// Panel 3 — same shape as panel1Panelists / panel2Panelists.
+const panel3Panelists: Person[] = [
+  {
+    name: "Arvin Shahid",
+    role: "Fellow @ OpenAI | 10+ intern | Ex-Nvidia, GitHub, SpaceX, Coinbase, Apple, Tesla, and more.",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/arvin-shahid/" },
+    ],
+  },
+  {
+    name: "Nia Asemota",
+    role: "Product Marketing Manager @ YouTube",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/nia-asemota/" },
+    ],
+  },
+  {
+    name: "Ly Na Nguyen",
+    role: "Engineering PM @ Apple",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/lynang15/" },
+    ],
+  },
+  {
+    name: "Ashley Torres",
+    role: "PM @ Microsoft",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/ashley-torres-ventura/" },
+    ],
+  },
+  {
+    name: "Brock Patchin",
+    role: "SWE @ Ridgeline | ex Southwest Airlines",
+    links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/bpatch/" }],
+  },
+  {
+    name: "Aimen Moten",
+    role: "SWE @ Google",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/aimen-moten/" },
+    ],
+  },
+  {
+    name: "Arman Irani",
+    role: "Head of AI @ AllSides",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/arman-irani/" },
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <main className="bg-white text-zinc-900">
@@ -282,6 +333,30 @@ export default function Home() {
           </h2>
 
           <h3 className="mt-10 text-xl font-semibold tracking-tight text-zinc-800">
+            Panel 3
+          </h3>
+          <p className="mt-1 text-sm text-zinc-600">
+            Speakers from Panel three.
+          </p>
+          {panel3Panelists.length > 0 ? (
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {panel3Panelists.map((panelist) => (
+                <PersonCard
+                  key={`panel3-${panelist.name}`}
+                  name={panelist.name}
+                  role={panelist.role}
+                  bio={panelist.bio}
+                  links={panelist.links}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-6 text-sm text-zinc-500">
+              We&apos;re adding Panel 3 speaker profiles here soon.
+            </p>
+          )}
+
+          <h3 className="mt-14 text-xl font-semibold tracking-tight text-zinc-800">
             Panel 2
           </h3>
           <p className="mt-1 text-sm text-zinc-600">
@@ -291,7 +366,7 @@ export default function Home() {
             <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {panel2Panelists.map((panelist) => (
                 <PersonCard
-                  key={panelist.name}
+                  key={`panel2-${panelist.name}`}
                   name={panelist.name}
                   role={panelist.role}
                   bio={panelist.bio}
@@ -314,7 +389,7 @@ export default function Home() {
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {panel1Panelists.map((panelist) => (
               <PersonCard
-                key={panelist.name}
+                key={`panel1-${panelist.name}`}
                 name={panelist.name}
                 role={panelist.role}
                 bio={panelist.bio}
