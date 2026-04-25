@@ -27,6 +27,11 @@ type Person = {
 // Past sessions (no registration CTA).
 const pastEvents: PastEventItem[] = [
   {
+    name: "Locked[In]: New Grad 101",
+    date: "Saturday, April 25 · Past event",
+    description: "Real advice for navigating life as a new grad.",
+  },
+  {
     name: "Locked[In]: Breaking into the Next Recruiting Cycle",
     date: "Saturday, April 11 · Past event",
     description: "Real advice for breaking into tech this season.",
@@ -39,14 +44,7 @@ const pastEvents: PastEventItem[] = [
 ];
 
 // Add each event’s public URL (e.g. Luma) to registrationUrl.
-const upcomingEvents: UpcomingEventItem[] = [
-  {
-    name: "Locked[In]: New Grad 101",
-    date: "Saturday, April 25 · 12:00 PM · Location to be announced",
-    description: "Real advice for navigating life as a new grad.",
-    registrationUrl: "https://luma.com/nteves13",
-  },
-];
+const upcomingEvents: UpcomingEventItem[] = [];
 
 const hosts: Person[] = [
   {
@@ -247,34 +245,40 @@ export default function Home() {
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Upcoming Events
           </h2>
-          <div className="mt-8 grid gap-5">
-            {upcomingEvents.map((event) => (
-              <article
-                key={event.name}
-                className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
-              >
-                <p className="text-sm font-medium text-[#2563EB]">{event.date}</p>
-                <h3 className="mt-2 text-xl font-semibold tracking-tight text-zinc-900">
-                  {event.name}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-zinc-600 sm:text-base">
-                  {event.description}
-                </p>
-                <a
-                  href={event.registrationUrl || "#"}
-                  {...(/^https?:\/\//i.test(event.registrationUrl)
-                    ? {
-                        target: "_blank" as const,
-                        rel: "noopener noreferrer",
-                      }
-                    : {})}
-                  className="mt-5 inline-flex items-center rounded-full border border-[#2563EB] px-5 py-2.5 text-sm font-semibold text-[#2563EB] transition-colors hover:bg-[#2563EB] hover:text-white"
+          {upcomingEvents.length > 0 ? (
+            <div className="mt-8 grid gap-5">
+              {upcomingEvents.map((event) => (
+                <article
+                  key={event.name}
+                  className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
                 >
-                  {event.ctaLabel ?? "Register"}
-                </a>
-              </article>
-            ))}
-          </div>
+                  <p className="text-sm font-medium text-[#2563EB]">{event.date}</p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-zinc-900">
+                    {event.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-zinc-600 sm:text-base">
+                    {event.description}
+                  </p>
+                  <a
+                    href={event.registrationUrl || "#"}
+                    {...(/^https?:\/\//i.test(event.registrationUrl)
+                      ? {
+                          target: "_blank" as const,
+                          rel: "noopener noreferrer",
+                        }
+                      : {})}
+                    className="mt-5 inline-flex items-center rounded-full border border-[#2563EB] px-5 py-2.5 text-sm font-semibold text-[#2563EB] transition-colors hover:bg-[#2563EB] hover:text-white"
+                  >
+                    {event.ctaLabel ?? "Register"}
+                  </a>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 text-base text-zinc-600">
+              Check soon for more upcoming events in the future.
+            </p>
+          )}
 
           <h2
             id="past-events"
